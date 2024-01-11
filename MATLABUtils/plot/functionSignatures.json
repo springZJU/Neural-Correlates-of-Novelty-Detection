@@ -1,0 +1,217 @@
+{
+    "_schemaVersion": "1.0.0",
+
+    "addLegend2Fig": {
+        "inputs": [
+            {"name": "Fig", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+            {"name": "legendStr", "kind": "required", "type": ["string"]},
+            {"name": "legendSize", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "legendPos", "kind": "required", "type": ["choices = {'left', 'right', 'top', 'bottom'}"]}
+        ]
+    },
+
+    "orderLine": {
+        "inputs": [
+            {"name": "Fig", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+            {"name": "searchParams", "kind": "required", "type": ["choices = {'Color', 'LineStyle', 'LineWidth', 'DisplayName'}"]},
+            {"name": "searchValue", "kind": "required"},
+            {"name": "order", "kind": "required", "type": ["choices = {'top','bottom'}"]}
+        ]
+    },
+
+    "getLine": {
+        "inputs": [
+            {"name": "Fig", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+            {"name": "getParams", "kind": "required", "type": ["choices = {'Color', 'LineStyle', 'LineWidth', 'DisplayName', 'XData', 'YData', 'ZData'}"]},
+            {"name": "searchParams", "kind": "required", "type": ["choices = {'Color', 'LineStyle', 'LineWidth', 'DisplayName'}"]},
+            {"name": "searchValue", "kind": "required"}
+        ]
+    },
+
+    "getObjVal": {
+        "inputs": [
+            {"name": "Fig", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+            {"mutuallyExclusiveGroup": [
+                [
+                    {"name": "ObjType", "kind": "required", "type": ["choices = {'line'}"]},
+                    {"name": "getParams", "kind": "ordered", "type": [["choices = {'Color', 'LineStyle', 'LineWidth', 'DisplayName', 'XData', 'YData', 'ZData'}"], ["@(args) isempty(args)"]]},
+                    {"name": "searchParams", "kind": "ordered", "type": ["choices = {'Color', 'LineStyle', 'LineWidth', 'DisplayName'}"]},
+                    {"name": "searchValue", "kind": "ordered"}
+                ],
+                [
+                    {"name": "ObjType", "kind": "required", "type": ["choices = {'image'}"]},
+                    {"name": "getParams", "kind": "ordered", "type": [["choices = {'XData', 'YData', 'CData', 'AlphaData'}"], ["@(args) isempty(args)"]]},
+                    {"name": "searchParams", "kind": "ordered", "type": ["choices = {'AlphaData'}"]},
+                    {"name": "searchValue", "kind": "ordered"}
+                ],
+                [
+                    {"name": "ObjType", "kind": "required", "type": ["choices = {'axes'}"]},
+                    {"name": "getParams", "kind": "ordered", "type": [["choices = {'Tag', 'XLim', 'YLim', 'Title', 'Position', 'XTickLabel', 'XTick', 'YTickLabel', 'YTick', 'XScale', 'YScale'}"], ["@(args) isempty(args)"]]},
+                    {"name": "searchParams", "kind": "ordered", "type": ["choices = {'Tag','XLim', 'YLim', 'Title', 'Position', 'XTickLabel', 'XTick', 'YTickLabel', 'YTick', 'XScale', 'YScale'}"]},
+                    {"name": "searchValue", "kind": "ordered"}
+                ],
+                [
+                    {"name": "ObjType", "kind": "required", "type": ["choices = {'figure', 'FigOrAxes'}"]},
+                    {"name": "getParams", "kind": "ordered", "type": [["choices = {'Tag', 'Children', 'Position'}"], ["@(args) isempty(args)"]]},
+                    {"name": "searchParams", "kind": "ordered", "type": ["choices = {'Tag','XLim', 'YLim', 'Title', 'Position', 'XTickLabel', 'XTick', 'YTickLabel', 'YTick', 'XScale', 'YScale'}"]},
+                    {"name": "searchValue", "kind": "ordered"}
+                ]
+            ]}
+        ]
+    },
+
+    "deleteLine": {
+        "inputs": [
+            {"name": "Fig", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+            {"name": "searchParams", "kind": "required", "type": ["choices = {'Color', 'LineStyle', 'LineWidth', 'DisplayName'}"]},
+            {"name": "searchValue", "kind": "required"}
+        ]
+    },
+
+    "setLine": {
+        "inputs": [
+            {"name": "Fig", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+            {"name": "setParams", "kind": "required", "type": ["choices = {'Color', 'LineStyle', 'LineWidth', 'DisplayName', 'XData', 'YData', 'ZData'}"]},
+            {"name": "setValue", "kind": "required"},
+            {"name": "searchParams", "kind": "required", "type": ["choices = {'Color', 'LineStyle', 'LineWidth', 'DisplayName'}"]},
+            {"name": "searchValue", "kind": "required"}
+        ]
+    },
+
+    "mSubplot": {
+        "inputs": [
+            {"mutuallyExclusiveGroup": [
+                [
+                    {"name": "row", "kind": "required", "type": ["scalar", "positive", "integer"]},
+                    {"name": "col", "kind": "required", "type": ["scalar", "positive", "integer"]},
+                    {"name": "index", "kind": "required", "type": ["scalar", "positive", "integer"]},
+                    {"name": "nSize", "kind": "ordered", "type": ["numeric", "vector"]},
+                    {"name": "margins", "kind": "ordered", "type": ["numeric", "vector", "numel=4"]},
+                    {"name": "paddings", "kind": "ordered", "type": ["numeric", "vector", "numel=4"]},
+                    {"name": "shape", "kind": "ordered", "type": ["choices = {'auto', 'square-min', 'square-max', 'fill'}"]},
+                    {"name": "nSize", "kind": "namevalue", "type": ["numeric", "vector"]},
+                    {"name": "margins", "kind": "namevalue", "type": ["numeric", "vector", "numel=4"], "purpose": "[left,right,bottom,top]"},
+                    {"name": "paddings", "kind": "namevalue", "type": ["numeric", "vector", "numel=4"], "purpose": "[left,right,bottom,top]"},
+                    {"name": "shape", "kind": "namevalue", "type": ["choices = {'auto', 'square-min', 'square-max', 'fill'}"]},
+                    {"name": "alignment", "kind": "namevalue", "type": ["choices = {'bottom-left', 'bottom-right', 'top-left', 'top-right', 'center-left', 'center-right', 'top-center', 'bottom-center', 'center'}"]},
+                    {"name": "margin_left", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "margin_right", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "margin_bottom", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "margin_top", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "padding_left", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "padding_right", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "padding_bottom", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "padding_top", "kind": "namevalue", "type": ["scalar"]}
+                ],
+                [
+                    {"name": "Fig", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+                    {"name": "row", "kind": "required", "type": ["scalar", "positive", "integer"]},
+                    {"name": "col", "kind": "required", "type": ["scalar", "positive", "integer"]},
+                    {"name": "index", "kind": "required", "type": ["scalar", "positive", "integer"]},
+                    {"name": "nSize", "kind": "ordered", "type": ["numeric", "vector"]},
+                    {"name": "margins", "kind": "ordered", "type": ["numeric", "vector", "numel=4"]},
+                    {"name": "paddings", "kind": "ordered", "type": ["numeric", "vector", "numel=4"]},
+                    {"name": "shape", "kind": "ordered", "type": ["choices = {'auto', 'square-min', 'square-max', 'fill'}"]},
+                    {"name": "nSize", "kind": "namevalue", "type": ["numeric", "vector"]},
+                    {"name": "margins", "kind": "namevalue", "type": ["numeric", "vector", "numel=4"], "purpose": "[left,right,bottom,top]"},
+                    {"name": "paddings", "kind": "namevalue", "type": ["numeric", "vector", "numel=4"], "purpose": "[left,right,bottom,top]"},
+                    {"name": "shape", "kind": "namevalue", "type": ["choices = {'auto', 'square-min', 'square-max', 'fill'}"]},
+                    {"name": "alignment", "kind": "namevalue", "type": ["choices = {'bottom-left', 'bottom-right', 'top-left', 'top-right', 'center-left', 'center-right', 'top-center', 'bottom-center', 'center'}"]},
+                    {"name": "margin_left", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "margin_right", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "margin_bottom", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "margin_top", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "padding_left", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "padding_right", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "padding_bottom", "kind": "namevalue", "type": ["scalar"]},
+                    {"name": "padding_top", "kind": "namevalue", "type": ["scalar"]}
+                ]
+            ]}
+        ]
+    },
+
+    "scaleAxes": {
+        "inputs": [
+            {"mutuallyExclusiveGroup": [
+                [
+                    {"name": "axisName", "kind": "required", "type": ["choices = {'x', 'y', 'c', 'z'}"]},
+                    {"name": "autoScale", "kind": "ordered", "type": ["choices = {'on', 'off'}"], "purpose": "auto scale y/c from current axes"}
+                ],
+                [
+                    {"name": "FigOrAxes", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+                    {"name": "axisName", "kind": "ordered", "type": ["choices = {'x', 'y', 'c', 'z'}"]}
+                ],
+                [
+                    {"name": "FigOrAxes", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+                    {"name": "axisName", "kind": "ordered", "type": ["choices = {'x', 'y', 'c', 'z'}"]},
+                    {"name": "autoScale", "kind": "ordered", "type": ["choices = {'on', 'off'}"], "purpose": "auto scale y/c from current axes"}
+                ]
+            ]},
+            {"name": "axisRange", "kind": "ordered", "type": ["numeric"]},
+            {"name": "cutoffRange", "kind": "ordered", "type": [["numeric", "numel=2"], ["@(args) isempty(args)"]]},
+            {"name": "symOpt", "kind": "ordered", "type": ["choices = {'none', 'min', 'max', 'positive', 'negative'}"], "purpose": "symmetrical option"},
+            {"name": "cutoffRange", "kind": "namevalue", "type": [["numeric", "numel=2"], ["@(args) isempty(args)"]]},
+            {"name": "symOpt", "kind": "namevalue", "type": ["choices = {'none', 'min', 'max', 'positive', 'negative'}"], "purpose": "symmetrical option"},
+            {"name": "type", "kind": "namevalue", "type": ["choices = {'line', 'hist'}"], "purpose": "graphics type for auto scaling"},
+            {"name": "uiOpt", "kind": "namevalue", "type": ["choices = {'show', 'hide'}"], "purpose": "call an App for scaling"}
+        ],
+        "description": "将相同的坐标范围应用于指定图像或坐标区"
+    },
+
+    "addLines2Axes": {
+        "inputs": [
+            {"mutuallyExclusiveGroup": [
+                [
+                    {"name": "lines", "kind": "ordered", "type": ["struct"]}
+                ],
+                [
+                    {"name": "FigOrAxes", "kind": "required", "type": ["@(args) all(isgraphics(args))"]},
+                    {"name": "lines", "kind": "ordered", "type": ["struct"]}
+                ]
+            ]}
+        ]
+    },
+
+    "mHistogram": {
+        "inputs": [
+            {"mutuallyExclusiveGroup": [
+                [
+                    {"name": "X", "kind": "required", "type": [["numeric"], ["cell"]]},
+                    {"name": "edges", "kind": "ordered", "type": ["numeric", "vector"]},
+                    {"name": "width", "kind": "namevalue", "type": ["numeric", "scalar"]},
+                    {"name": "Color", "kind": "namevalue", "type": ["cell"]},
+                    {"name": "DisplayName", "kind": "namevalue", "type": ["string"]},
+                    {"name": "BinWidth", "kind": "namevalue", "type": ["numeric", "scalar", "positive"]},
+                    {"name": "BinMethod", "kind": "namevalue", "type": ["choices = {'auto', 'scott', 'fd', 'integers', 'sturges', 'sqrt'}"]}
+                ],
+                [
+                    {"name": "axes", "kind": "required", "type": ["@(args) strcmp(class(args), 'matlab.graphics.Graphics')"]},
+                    {"name": "X", "kind": "required", "type": [["numeric"], ["cell"]]},
+                    {"name": "edges", "kind": "ordered", "type": ["numeric", "vector"]},
+                    {"name": "width", "kind": "namevalue", "type": ["numeric", "scalar"]},
+                    {"name": "Color", "kind": "namevalue", "type": ["cell"]},
+                    {"name": "DisplayName", "kind": "namevalue", "type": ["string"]},
+                    {"name": "BinWidth", "kind": "namevalue", "type": ["numeric", "scalar", "positive"]},
+                    {"name": "BinMethod", "kind": "namevalue", "type": ["choices = {'auto', 'scott', 'fd', 'integers', 'sturges', 'sqrt'}"]}
+                ]
+            ]}
+        ],
+        "description": "分组直方图绘制"
+    },
+
+    "mRaster": {
+        "inputs": [
+            {"mutuallyExclusiveGroup": [
+                [
+                    {"name": "rasterData", "kind": "required", "type": ["struct"]},
+                    {"name": "sz", "kind": "ordered", "type": ["scalar", "positive", "integer"]}
+                ],
+                [
+                    {"name": "axes", "kind": "required", "type": ["@(args) strcmp(class(args), 'matlab.graphics.Graphics')"]},
+                    {"name": "rasterData", "kind": "required", "type": ["struct"]},
+                    {"name": "sz", "kind": "ordered", "type": ["scalar", "positive", "integer"]}
+                ]
+            ]}
+        ]
+    }
+}

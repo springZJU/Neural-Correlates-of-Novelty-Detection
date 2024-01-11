@@ -1,0 +1,25 @@
+#git ignore for Matlab Project
+# Edit by Waschl 
+#This file is created by: touch.gitignore 
+#put it in the root folder
+
+#ignore temporary untitled files
+untitled*
+
+#ignore codegen folder
+**/codegen/
+*/codegen/
+/codegen/
+
+#ignore slprj folder
+*/slprj/
+/slprj/
+**/MATLAB Add-Ons/
+
+#ignore following files;
+*.asv
+*.slxc
+*.mexmaci64
+*.mexmaci32
+*.mexw32
+*.mexw64

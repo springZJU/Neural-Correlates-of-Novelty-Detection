@@ -1,0 +1,13 @@
+{
+    "_schemaVersion": "1.0.0",
+
+    "NoveltySU.utils.threshold.Thrcal_pFit": {
+        "inputs": [
+            {"name": "data", "kind": "required", "type": ["numeric"]},
+            {"name": "opt", "kind": "required", "type": ["struct"]},
+            {"name": "xFit", "kind": "namevalue", "type": ["numeric", "vector"]},
+            {"name": "yThr", "kind": "namevalue", "type": ["numeric", "vector"]},
+            {"name": "sigmoidName", "kind": "namevalue", "type":["choices={'norm', 'gauss', 'gaussint', 'logistic', 'logn', 'weibull', 'gumbel', 'rgumbel', 'tdist'}"]}
+    ]
+}
+}

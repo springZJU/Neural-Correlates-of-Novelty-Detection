@@ -1,0 +1,86 @@
+{
+    "_schemaVersion": "1.0.0",
+
+    "findPeakTrough": {
+        "inputs": [
+            {"name": "data", "kind": "required", "type": ["numeric", "2d"]},
+            {"name": "dim", "kind": "ordered", "type": ["numeric", "choices={2, 1}"]}
+        ]
+    },
+
+    "findVectorLoc": {
+        "inputs": [
+            {"name": "X", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "pat", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "n", "kind": "ordered", "type": [["numeric", "integer", "positive", "scalar"], ["@isempty"]]},
+            {"name": "direction", "kind": "ordered", "type": ["choices={'first', 'last'}"]}
+        ]
+    },
+
+    "mAnovaCell": {
+        "inputs": [
+            {"name": "trialData", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "tIndex", "kind": "namevalue", "type": ["numeric", "vector"]},
+            {"name": "label", "kind": "namevalue"},
+            {"name": "CriticalValueType", "kind": "namevalue", "type":["choices={'tukey-kramer', 'dunn-sidak', 'bonferroni', 'scheffe', 'dunnett'}"]}
+        ]
+    },
+
+    "mTtest": {
+        "inputs": [
+            {"name": "x", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "y", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "Tail", "kind": "namevalue", "type":["choices={'both', 'left', 'right'}"]},
+            {"name": "Alpha", "kind": "namevalue", "type": ["numeric", "vector"]}
+        ]
+    },
+
+     "mTtestCellSuccessive": {
+        "inputs": [
+            {"name": "trialData", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "Tail", "kind": "namevalue", "type":["choices={'both', 'left', 'right'}"]},
+            {"name": "Alpha", "kind": "namevalue", "type": ["numeric", "vector"]}
+        ]
+    },
+    
+
+     "judgeStdIncDec": {
+        "inputs": [
+            {"name": "trialData", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "Tail", "kind": "namevalue", "type":["choices={'both', 'left', 'right'}"]},
+            {"name": "Alpha", "kind": "namevalue", "type": ["numeric", "vector"]}
+        ]
+    },
+
+
+     "mPdist": {
+        "inputs": [
+            {"name": "x", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "cellData", "kind": "required", "type": ["cell", "vector"]},
+            {"name": "Method", "kind": "ordered", "type": ["choices={'seuclidean', 'squaredeuclidean', 'seuclidean', 'mahalanobis', 'cityblock', 'minkowski', 'spearman', 'hamming', 'correlation', 'cosine'}"]}
+        ]
+    },
+
+     "mXcorr": {
+        "inputs": [
+            {"name": "A", "kind": "required", "type": ["numeric", "vector"]},
+            {"name": "B", "kind": "ordered", "type": ["numeric", "vector"]},
+            {"name": "binSize", "kind": "namevalue", "type": ["numeric"]},
+            {"name": "maxLag", "kind": "namevalue", "type": ["numeric", "vector"]}
+        ]
+    },
+
+    "SE": {
+        "inputs": [
+            {"name": "x", "kind": "required", "type": ["numeric", "2d"]},
+            {"mutuallyExclusiveGroup": [
+                [
+                    {"name": "dim", "kind": "ordered", "type": ["numeric", "choices={1, 2}"]}
+                ],
+                [
+                    {"name": "dim", "kind": "ordered", "type": ["choices={'all'}"]}
+                ]
+            ]}
+        ]
+    }
+}

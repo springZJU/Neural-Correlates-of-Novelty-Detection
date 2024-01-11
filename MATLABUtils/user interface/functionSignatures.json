@@ -1,0 +1,44 @@
+{
+    "_schemaVersion": "1.0.0",
+
+    "validateInput": {
+        "inputs": [
+            {"name": "prompt", "kind": "required", "type": ["string", "char"]},
+            {"mutuallyExclusiveGroup": [
+                [
+                    {"name": "validateFcn", "kind": "ordered", "type": ["function_handle"]},
+                    {"name": "sInput", "kind": "ordered", "type": ["choices = {'s'}"], "purpose": "str input"}
+                ],
+                [
+                    {"name": "validateFcn", "kind": "ordered", "type": ["function_handle"]}
+                ],
+                [
+                    {"name": "sInput", "kind": "ordered", "type": ["choices = {'s'}"], "purpose": "str input"}
+                ]
+            ]},
+            {"name": "UI", "kind": "namevalue", "type": "choices = {'on', 'off'}"}
+        ],
+        "description": "带校验的输入"
+    },
+
+    "Msgbox": {
+        "inputs": [
+            {"name": "content", "kind": "required", "type": [["string", "char"], ["cell"]]},
+            {"name": "title", "kind": "ordered", "type": ["string", "char"]},
+            {"name": "alignment", "kind": "ordered", "type": ["choices = {'center', 'top-left', 'top-right', 'top-center', 'center-left', 'center-right', 'bottom-left', 'bottom-right', 'bottom-center'}"]},
+            {"name": "Alignment", "kind": "namevalue", "type": ["choices = {'center', 'top-left', 'top-right', 'top-center', 'center-left', 'center-right', 'bottom-left', 'bottom-right', 'bottom-center'}"]},
+            {"name": "TitleColor", "kind": "namevalue"},
+            {"name": "ContentColor", "kind": "namevalue"},
+            {"name": "TitleFontSize", "kind": "namevalue", "type": ["scalar", "positive"]},
+            {"name": "ContentFontSize", "kind": "namevalue", "type": ["scalar", "positive"]},
+            {"name": "BackgroundColor", "kind": "namevalue"}
+        ]
+    },
+
+    "figureViewer": {
+        "inputs": [
+            {"name": "srcPaths", "kind": "required", "type": ["string"]},
+            {"name": "orientation", "kind": "ordered", "type": ["choices = {'vertical', 'horizontal'}"]}
+        ]
+    }
+}
